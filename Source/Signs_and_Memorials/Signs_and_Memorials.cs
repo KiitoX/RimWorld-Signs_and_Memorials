@@ -18,18 +18,36 @@ namespace SaM {
 		//
 		// Fields
 		//
-		public string text;
+		private CompText textComp;
 
 		//
-		// Constructors
+		// Properties
 		//
-		public Base() {
-			this.text = "SaM_Placeholder".Translate();
+		public string text {
+			get {
+				return this.textComp.text;
+			}
+			set {
+				if (this.textComp.text == value) {
+					return;
+				}
+				this.textComp.text = value;
+			}
 		}
 
 		//
 		// Methods
 		//
+		public override void ExposeData()
+		{
+			base.ExposeData();
+			if (Scribe.mode == LoadSaveMode.PostLoadInit) {
+				if (this.textComp == null) {
+					this.textComp = base.GetComp<CompText> ();
+				}
+			}
+		}
+
 		// THIS METHOD HANDLES THE STRING IN THE BOTTOM RIGHT
 		public override string GetInspectString() {
 
@@ -76,6 +94,38 @@ namespace SaM {
 			return String.Join("\n", lines.ToArray());
 		}
 
+		public override void SpawnSetup (Map map) {
+			base.SpawnSetup(map);
+			this.textComp = base.GetComp<CompText>();
+		}
+
+	}
+
+	public class CompText : ThingComp {
+		//
+		// Fields
+		//
+		public string text = "SaM_Placeholder".Translate();
+
+		//
+		// Methods
+		//
+		public override void PostExposeData ()
+		{
+			base.PostExposeData();
+			Scribe_Values.LookValue<string>(ref this.text, "text", "ERROR LOADING", false);
+		}
+	}
+
+	public class CompProperties_Text : CompProperties
+	{
+		//
+		// Constructors
+		//
+		public CompProperties_Text ()
+		{
+			this.compClass = typeof(CompText);
+		}
 	}
 
 	public class ITab_View : ITab {

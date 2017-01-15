@@ -14,10 +14,13 @@
     <minifiedDef>MinifiedFurniture</minifiedDef>
     <coversFloor>false</coversFloor>
     <tickerType>Never</tickerType>
-    <rotatable>true</rotatable>
+    <rotatable>false</rotatable>
     <comps>
       <li>
         <compClass>CompQuality</compClass>
+      </li>
+      <li class="SaM.CompProperties_Text">
+        <compClass>SaM.CompText</compClass>
       </li>
     </comps>
     <stuffCategories>
@@ -48,12 +51,13 @@
       <texPath>Things/Building/SaM/Sign</texPath>
       <graphicClass>Graphic_Single</graphicClass>
       <damageData>
-        <rect>(0.2,0.2,0.4,0.4)</rect>
+        <rect>(0.078125,0.078125,0.921875,0.921875)</rect>
       </damageData>
     </graphicData>
     <statBases>
       <MaxHitPoints>80</MaxHitPoints>
       <WorkToBuild>50</WorkToBuild>
+      <Beauty>8</Beauty>
       <Flammability>1.0</Flammability>
     </statBases>
     <costStuffCount>20</costStuffCount>
@@ -79,16 +83,14 @@
     <graphicData>
       <texPath>Things/Building/SaM/Memorial</texPath>
       <graphicClass>Graphic_Single</graphicClass>
-      <drawSize>(1,2)</drawSize>
       <damageData>
-        <rect>(0.1,0.1,0.8,0.8)</rect>
+        <rect>(0.03125,0.03125,0.96875,0.984375)</rect>
       </damageData>
     </graphicData>
-    <interactionSquareOffset>(0,0,1)</interactionSquareOffset>
-    <!-- <drawOffscreen>True</drawOffscreen> -->
     <statBases>
       <MaxHitPoints>350</MaxHitPoints>
       <WorkToBuild>250</WorkToBuild>
+      <Beauty>16</Beauty>
       <Flammability>1.0</Flammability>
     </statBases>
     <costStuffCount>50</costStuffCount>
