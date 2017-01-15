@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <SaM_Sign.label>Schild</SaM_Sign.label>
+  <SaM_Sign.description>Einfaches Schild. Text kann bearbeitet werden.</SaM_Sign.description>
+
+  <SaM_Memorial.label>Denkmal</SaM_Memorial.label>
+  <SaM_Memorial.description>Kunstvolles Denkmal. Text kann bearbeitet werden.</SaM_Memorial.description>
+
+</LanguageData>

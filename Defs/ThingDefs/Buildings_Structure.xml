@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Buildings>
+
+  <ThingDef Name="SaM_Base" Abstract="True">
+    <category>Building</category>
+    <thingClass>SaM.Base</thingClass>
+    <soundImpactDefault>BulletImpactMetal</soundImpactDefault>
+    <selectable>true</selectable>
+    <drawerType>MapMeshAndRealTime</drawerType>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <repairEffect>Repair</repairEffect>
+    <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+    <filthLeaving>BuildingRubble</filthLeaving>
+    <minifiedDef>MinifiedFurniture</minifiedDef>
+    <coversFloor>false</coversFloor>
+    <tickerType>Never</tickerType>
+    <rotatable>true</rotatable>
+    <comps>
+      <li>
+        <compClass>CompQuality</compClass>
+      </li>
+    </comps>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+      <li>Stony</li>
+    </stuffCategories>
+    <designationCategory>Misc</designationCategory>
+    <tradeTags>
+      <li>Furniture</li>
+    </tradeTags>
+    <inspectorTabs>
+      <li>SaM.ITab_View</li>
+    </inspectorTabs>
+  </ThingDef>
+
+
+
+  <!--========================= Signs =============================-->
+
+
+
+  <ThingDef ParentName="SaM_Base" Name="SaM_Sign">
+    <defName>SaM_Sign</defName>
+    <label>sign</label>
+    <description>Simple sign. Text can be manually edited.</description>
+    <graphicData>
+      <texPath>Things/Building/SaM/Sign</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <damageData>
+        <rect>(0.2,0.2,0.4,0.4)</rect>
+      </damageData>
+    </graphicData>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <WorkToBuild>50</WorkToBuild>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <costStuffCount>20</costStuffCount>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <passability>Standable</passability>
+    <pathCost>8</pathCost>
+    <castEdgeShadows>false</castEdgeShadows>
+    <fillPercent>0.5</fillPercent>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <blockLight>false</blockLight>
+  </ThingDef>
+
+
+
+  <!--========================= Memorials =============================-->
+
+
+
+  <ThingDef ParentName="SaM_Base" Name="SaM_Memorial">
+    <defName>SaM_Memorial</defName>
+    <label>memorial</label>
+    <description>Fancy memorial. Text can be manually edited.</description>
+    <graphicData>
+      <texPath>Things/Building/SaM/Memorial</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1,2)</drawSize>
+      <damageData>
+        <rect>(0.1,0.1,0.8,0.8)</rect>
+      </damageData>
+    </graphicData>
+    <interactionSquareOffset>(0,0,1)</interactionSquareOffset>
+    <!-- <drawOffscreen>True</drawOffscreen> -->
+    <statBases>
+      <MaxHitPoints>350</MaxHitPoints>
+      <WorkToBuild>250</WorkToBuild>
+      <Flammability>1.0</Flammability>
+    </statBases>
+    <costStuffCount>50</costStuffCount>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Impassable</passability>
+    <blockWind>true</blockWind>
+    <castEdgeShadows>true</castEdgeShadows>
+    <fillPercent>0.8</fillPercent>
+    <terrainAffordanceNeeded>Heavy</terrainAffordanceNeeded>
+    <holdsRoof>false</holdsRoof>
+    <staticSunShadowHeight>1.0</staticSunShadowHeight>
+    <blockLight>false</blockLight>
+    <damageMultipliers>
+      <li>
+        <damageDef>Bomb</damageDef>
+        <multiplier>2</multiplier>
+      </li>
+    </damageMultipliers>
+  </ThingDef>
+
+</Buildings>
