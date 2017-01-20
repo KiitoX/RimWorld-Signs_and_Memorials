@@ -161,8 +161,9 @@ namespace SaM {
 		//
 		// Fields
 		//
-		public bool editing;
-		public string text;
+		private bool editing = false;
+		private string text = "";
+		private string tabThingID = null;
 
 		//
 		// Properties
@@ -185,8 +186,12 @@ namespace SaM {
 		//
 		// Methods
 		//
-		public override void OnOpen() {
-			this.text = ((Base)base.SelThing).text;
+		public override void TabUpdate() {
+			base.TabUpdate();
+			if(this.tabThingID != base.SelThing.GetUniqueLoadID()) {
+				this.text = ((Base)base.SelThing).text;
+				this.tabThingID = base.SelThing.GetUniqueLoadID();
+			}
 		}
 
 		protected override void FillTab() {
