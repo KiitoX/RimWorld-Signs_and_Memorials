@@ -12,6 +12,7 @@
     <leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
     <filthLeaving>BuildingRubble</filthLeaving>
     <minifiedDef>MinifiedFurniture</minifiedDef>
+	<hasTooltip>true</hasTooltip>
     <coversFloor>false</coversFloor>
     <tickerType>Never</tickerType>
     <rotatable>false</rotatable>

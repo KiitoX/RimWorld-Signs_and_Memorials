@@ -4,8 +4,17 @@ using System.Collections.Generic;
 using Verse;
 using RimWorld;
 using UnityEngine;
+using HugsLib;
+using HugsLib.Settings;
 
 namespace SaM {
+
+	/*
+	TODO:
+
+	Pause on edit... (Not sure if really necessary)
+	
+	 */
 
 	public class Base : Building {
 		
@@ -13,11 +22,15 @@ namespace SaM {
 		// Static Fields
 		//
 		private static int MAX_LINES = 6;
-		private static int MAX_LENGTH = 408; // valid for GameFont.Small
+		private static int MAX_LENGTH = 408;
+		// valid ONLY for GameFont.Small
 
 		//
 		// Fields
 		//
+		private ModSettingsPack settings;
+		private SettingHandle<bool> editOnBuild;
+		
 		private CompText textComp;
 
 		//
@@ -28,7 +41,7 @@ namespace SaM {
 				return this.textComp.text;
 			}
 			set {
-				if (this.textComp.text == value) {
+				if(this.textComp.text == value) {
 					return;
 				}
 				this.textComp.text = value;
@@ -36,14 +49,23 @@ namespace SaM {
 		}
 
 		//
+		// Constructors
+		//
+		public Base() {
+			this.settings = HugsLibController.SettingsManager.GetModSettings("SaM");
+			this.editOnBuild = this.settings.GetHandle<bool>("SaM_editOnBuild",
+			                                                 "SaM_editOnBuild_title".Translate(),
+			                                                 "SaM_editOnBuild_desc".Translate(), false);
+		}
+
+		//
 		// Methods
 		//
-		public override void ExposeData()
-		{
+		public override void ExposeData() {
 			base.ExposeData();
-			if (Scribe.mode == LoadSaveMode.PostLoadInit) {
-				if (this.textComp == null) {
-					this.textComp = base.GetComp<CompText> ();
+			if(Scribe.mode == LoadSaveMode.PostLoadInit) {
+				if(this.textComp == null) {
+					this.textComp = base.GetComp<CompText>();
 				}
 			}
 		}
@@ -58,7 +80,7 @@ namespace SaM {
 
 			foreach(string line in this.text.Split('\n')) {
 				string short_line = "";
-				if (Text.CalcSize(line).x > MAX_LENGTH) {
+				if(Text.CalcSize(line).x > MAX_LENGTH) {
 					foreach(string word in line.Split(' ')) {
 						if(Text.CalcSize(short_line + word).x < MAX_LENGTH) {
 							short_line += word + ' ';
@@ -88,15 +110,24 @@ namespace SaM {
 			}
 
 			if(lines.Count > MAX_LINES) {
-				lines = lines.GetRange(0, MAX_LINES-1);
+				lines = lines.GetRange(0, MAX_LINES - 1);
 				lines.Add("(...)");
 			}
 			return String.Join("\n", lines.ToArray());
 		}
 
-		public override void SpawnSetup (Map map) {
+		public override TipSignal GetTooltip() {
+			return new TipSignal(this.text, this.thingIDNumber * 152317 /*251235*/, TooltipPriority.Default);
+		}
+
+		public override void SpawnSetup(Map map) {
 			base.SpawnSetup(map);
 			this.textComp = base.GetComp<CompText>();
+			if(this.editOnBuild) {
+				JumpToTargetUtility.TrySelect(this);
+				Find.MainTabsRoot.SetCurrentTab(MainTabDefOf.Inspect);
+				((MainTabWindow_Inspect)MainTabDefOf.Inspect.Window).OpenTabType = this.GetInspectTabs().OfType<ITab_View>().First().GetType();
+			}
 		}
 
 	}
@@ -110,20 +141,17 @@ namespace SaM {
 		//
 		// Methods
 		//
-		public override void PostExposeData ()
-		{
+		public override void PostExposeData() {
 			base.PostExposeData();
 			Scribe_Values.LookValue<string>(ref this.text, "text", "ERROR LOADING", false);
 		}
 	}
 
-	public class CompProperties_Text : CompProperties
-	{
+	public class CompProperties_Text : CompProperties {
 		//
 		// Constructors
 		//
-		public CompProperties_Text ()
-		{
+		public CompProperties_Text() {
 			this.compClass = typeof(CompText);
 		}
 	}
