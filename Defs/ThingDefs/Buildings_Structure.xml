@@ -56,12 +56,12 @@
       </damageData>
     </graphicData>
     <statBases>
-      <MaxHitPoints>80</MaxHitPoints>
-      <WorkToBuild>50</WorkToBuild>
-      <Beauty>8</Beauty>
+      <MaxHitPoints>60</MaxHitPoints>
+      <WorkToBuild>30</WorkToBuild>
+      <Beauty>1</Beauty>
       <Flammability>1.0</Flammability>
     </statBases>
-    <costStuffCount>20</costStuffCount>
+    <costStuffCount>15</costStuffCount>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
     <passability>Standable</passability>
     <pathCost>8</pathCost>
@@ -89,12 +89,12 @@
       </damageData>
     </graphicData>
     <statBases>
-      <MaxHitPoints>350</MaxHitPoints>
-      <WorkToBuild>250</WorkToBuild>
-      <Beauty>16</Beauty>
+      <MaxHitPoints>190</MaxHitPoints>
+      <WorkToBuild>100</WorkToBuild>
+      <Beauty>4</Beauty>
       <Flammability>1.0</Flammability>
     </statBases>
-    <costStuffCount>50</costStuffCount>
+    <costStuffCount>35</costStuffCount>
     <altitudeLayer>Building</altitudeLayer>
     <passability>Impassable</passability>
     <blockWind>true</blockWind>
