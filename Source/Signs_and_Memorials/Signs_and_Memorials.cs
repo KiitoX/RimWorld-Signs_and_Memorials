@@ -4,17 +4,69 @@ using System.Collections.Generic;
 using Verse;
 using RimWorld;
 using UnityEngine;
-using HugsLib;
-using HugsLib.Settings;
 
 namespace SaM {
 
-	/*
-	TODO:
+	public class SaM_Mod : Verse.Mod {
 
-	Pause on edit... (Not sure if really necessary)
-	
-	 */
+		//
+		// Constructors
+		//
+		public SaM_Mod(Verse.ModContentPack content) : base(content) {}
+
+		//
+		// Methods
+		//
+		public override String SettingsCategory() {
+			return "SaM_Settings_category".Translate();
+		}
+
+		public override void DoSettingsWindowContents(Rect inRect) {
+			SaM_ModSettings settings = this.GetSettings<SaM_ModSettings>();
+			Text.Font = GameFont.Small;
+
+			float margin = 10;
+			float xPos = inRect.x + margin;
+			float yOff = inRect.y + margin;
+			float posW = inRect.width - 2 * margin;
+
+			Rect editCheckbox = new Rect(xPos, yOff, posW, 20);
+			yOff += editCheckbox.height;
+			Rect editDescription = new Rect(xPos, yOff, posW, 20);
+
+			Widgets.CheckboxLabeled(editCheckbox, "SaM_Settings_editOnBuild_label".Translate(), ref settings.editOnBuild, false);
+			Widgets.Label(editDescription, "SaM_Settings_editOnBuild_description".Translate());
+
+			// It seems to already work as is, but supposedly this has to be called to save the settings.
+			// Perhaps this only applies if the settings are changed from an 'external' context...
+			// LoadedModManager.GetMod<SaM_Mod>().WriteSettings();
+		}
+	}
+
+	public class SaM_ModSettings : Verse.ModSettings {
+
+		/* TODO:
+		 * 
+		 * Pause game on edit, would require some looking around, probably...
+		 */
+		
+		//
+		// Fields
+		//
+		public bool editOnBuild;
+
+		//
+		// Constructors
+		//
+		public SaM_ModSettings() {}
+
+		//
+		// Methods
+		//
+		public override void ExposeData() {
+			Scribe_Values.Look<bool>(ref this.editOnBuild, "edit_on_build", false, false);
+		}
+	}
 
 	public class Base : Building {
 		
@@ -22,15 +74,14 @@ namespace SaM {
 		// Static Fields
 		//
 		private static int MAX_LINES = 6;
-		private static int MAX_LENGTH = 408;
-		// valid ONLY for GameFont.Small
+		private static int MAX_LENGTH = 408; // valid ONLY for GameFont.Small
+		private static GameFont TEXT_FONT = GameFont.Small;
 
 		//
 		// Fields
 		//
-		private ModSettingsPack settings;
-		private SettingHandle<bool> editOnBuild;
-		
+		private SaM_ModSettings settings;
+
 		private CompText textComp;
 
 		//
@@ -52,10 +103,7 @@ namespace SaM {
 		// Constructors
 		//
 		public Base() {
-			this.settings = HugsLibController.SettingsManager.GetModSettings("SaM");
-			this.editOnBuild = this.settings.GetHandle<bool>("SaM_editOnBuild",
-			                                                 "SaM_editOnBuild_title".Translate(),
-			                                                 "SaM_editOnBuild_desc".Translate(), false);
+			this.settings = LoadedModManager.GetMod<SaM_Mod>().GetSettings<SaM_ModSettings>();
 		}
 
 		//
@@ -70,11 +118,11 @@ namespace SaM {
 			}
 		}
 
-		// THIS METHOD HANDLES THE STRING IN THE BOTTOM RIGHT
+		// THIS METHOD HANDLES THE STRING IN THE BOTTOM LEFT
 		public override string GetInspectString() {
 
 			// REQUIRED FOR Text.CalcSize TO WORK PROPERLY
-			Text.Font = GameFont.Small;
+			Text.Font = TEXT_FONT;
 
 			List<string> lines = new List<string>();
 
@@ -120,13 +168,13 @@ namespace SaM {
 			return new TipSignal(this.text, this.thingIDNumber * 152317 /*251235*/, TooltipPriority.Default);
 		}
 
-		public override void SpawnSetup(Map map) {
-			base.SpawnSetup(map);
+		public override void SpawnSetup(Map map, bool respawningAfterLoad) {
+			base.SpawnSetup(map, respawningAfterLoad);
 			this.textComp = base.GetComp<CompText>();
-			if(this.editOnBuild) {
-				JumpToTargetUtility.TrySelect(this);
-				Find.MainTabsRoot.SetCurrentTab(MainTabDefOf.Inspect);
-				((MainTabWindow_Inspect)MainTabDefOf.Inspect.Window).OpenTabType = this.GetInspectTabs().OfType<ITab_View>().First().GetType();
+			if(this.settings.editOnBuild) {
+				CameraJumper.TryJumpAndSelect(this);
+				Find.MainTabsRoot.SetCurrentTab(MainButtonDefOf.Inspect);
+				((MainTabWindow_Inspect)MainButtonDefOf.Inspect.TabWindow).OpenTabType = this.GetInspectTabs().OfType<ITab_View>().First().GetType();
 			}
 		}
 
@@ -143,7 +191,7 @@ namespace SaM {
 		//
 		public override void PostExposeData() {
 			base.PostExposeData();
-			Scribe_Values.LookValue<string>(ref this.text, "text", "ERROR LOADING", false);
+			Scribe_Values.Look<string>(ref this.text, "text", "ERROR LOADING", false);
 		}
 	}
 
@@ -199,15 +247,17 @@ namespace SaM {
 
 			Rect text = new Rect(20, 20, this.size.x - 40, this.size.y - 75);
 			Rect button = new Rect(20, this.size.y - 50, this.size.x - 40, 30);
+			Rect cancel = new Rect(button.x, button.y, (button.width - 10) / 2, button.height);
+			Rect save = new Rect((this.size.x + 10) / 2, button.y, (button.width - 10) / 2, button.height);
 
 			if(this.editing) {
 				this.text = Widgets.TextArea(text, this.text);
 
-				if(Widgets.ButtonText(new Rect(button.x, button.y, (button.width - 10) / 2, button.height), "SaM_TabView_Cancel".Translate())) {
+				if(Widgets.ButtonText(cancel, "SaM_TabView_Cancel".Translate())) {
 					this.editing = false;
 					this.text = ((Base)base.SelThing).text;
 				}
-				if(Widgets.ButtonText(new Rect((this.size.x + 10) / 2, button.y, (button.width - 10) / 2, button.height), "SaM_TabView_Save".Translate())) {
+				if(Widgets.ButtonText(save, "SaM_TabView_Save".Translate())) {
 					this.editing = false;
 					((Base)base.SelThing).text = this.text;
 				}

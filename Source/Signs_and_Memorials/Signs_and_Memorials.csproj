@@ -44,4 +44,42 @@
     <Compile Include="Signs_and_Memorials.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="..\..\About\About.xml">
+      <Link>About\About.xml</Link>
+    </None>
+    <None Include="..\..\About\Preview.png">
+      <Link>About\Preview.png</Link>
+    </None>
+    <None Include="..\..\About\PublishedFileId.txt">
+      <Link>About\PublishedFileId.txt</Link>
+    </None>
+    <None Include="..\..\Defs\ThingDefs\Buildings_Structure.xml">
+      <Link>Defs\ThingDefs\Buildings_Structure.xml</Link>
+    </None>
+    <None Include="..\..\Languages\English\DefInjected\ThingDef\Buildings_Misc.xml">
+      <Link>Languages\English\DefInjected\ThingDef\Buildings_Misc.xml</Link>
+    </None>
+    <None Include="..\..\Languages\English\Keyed\ITabs.xml">
+      <Link>Languages\English\Keyed\ITabs.xml</Link>
+    </None>
+    <None Include="..\..\Languages\English\Keyed\Settings.xml">
+      <Link>Languages\English\Keyed\Settings.xml</Link>
+    </None>
+    <None Include="..\..\Languages\German\DefInjected\ThingDef\Buildings_Misc.xml">
+      <Link>Languages\German\DefInjected\ThingDef\Buildings_Misc.xml</Link>
+    </None>
+    <None Include="..\..\Languages\German\Keyed\ITabs.xml">
+      <Link>Languages\German\Keyed\ITabs.xml</Link>
+    </None>
+    <None Include="..\..\Languages\German\Keyed\Settings.xml">
+      <Link>Languages\German\Keyed\Settings.xml</Link>
+    </None>
+    <None Include="..\..\Textures\Things\Building\SaM\Memorial.png">
+      <Link>Textures\Things\Building\SaM\Memorial.png</Link>
+    </None>
+    <None Include="..\..\Textures\Things\Building\SaM\Sign.png">
+      <Link>Textures\Things\Building\SaM\Sign.png</Link>
+    </None>
+  </ItemGroup>
 </Project>
