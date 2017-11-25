@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Buildings>
+<Defs>
 
   <ThingDef Name="SaM_Base" Abstract="True">
     <category>Building</category>
@@ -112,4 +112,4 @@
     </damageMultipliers>
   </ThingDef>
 
-</Buildings>
+</Defs>
