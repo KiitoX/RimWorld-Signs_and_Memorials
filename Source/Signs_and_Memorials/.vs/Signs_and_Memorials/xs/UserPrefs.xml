@@ -1,0 +1,15 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Defs/ThingDefs/Buildings_Structure.xml">
+    <Files>
+      <File FileName="../../About/About.xml" Line="6" Column="27" />
+      <File FileName="Signs_and_Memorials.cs" Line="7" Column="1" />
+      <File FileName="../../Defs/ThingDefs/Buildings_Structure.xml" Line="18" Column="33" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
