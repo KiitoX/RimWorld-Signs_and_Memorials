@@ -24,6 +24,9 @@
         <compClass>SaM.CompText</compClass>
       </li>
     </comps>
+    <thingCategories>
+      <li>BuildingsMisc</li>
+    </thingCategories>
     <stuffCategories>
       <li>Metallic</li>
       <li>Woody</li>
@@ -60,6 +63,7 @@
       <WorkToBuild>30</WorkToBuild>
       <Beauty>1</Beauty>
       <Flammability>1.0</Flammability>
+      <Mass>1</Mass>
     </statBases>
     <costStuffCount>15</costStuffCount>
     <altitudeLayer>FloorEmplacement</altitudeLayer>
@@ -93,6 +97,7 @@
       <WorkToBuild>100</WorkToBuild>
       <Beauty>4</Beauty>
       <Flammability>1.0</Flammability>
+      <Mass>80</Mass>
     </statBases>
     <costStuffCount>35</costStuffCount>
     <altitudeLayer>Building</altitudeLayer>

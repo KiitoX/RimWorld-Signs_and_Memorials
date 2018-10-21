@@ -70,11 +70,15 @@ namespace SaM {
 
 	public class Base : Building {
 
-		//
-		// Static Fields
-		//
-		private static int MAX_LINES = 6;
-		private static int MAX_LENGTH = 408; // valid ONLY for GameFont.Small
+        //
+        // Static Fields
+        //
+        // this value is only correct when the object is placed.
+		// in minified form this should be 5 but sadly we can't find that out easily
+		// so there will be a stupid scrollbar while in minified form.
+		// you can also not access the full text, but I believe that's not a bad thing
+        private static int MAX_LINES = 6;
+        private static int MAX_LENGTH = 408; // this is valid ONLY for GameFont.Small
 		private static GameFont TEXT_FONT = GameFont.Small;
 
 		//
@@ -128,7 +132,17 @@ namespace SaM {
 
 			foreach(string line in this.text.Split('\n')) {
 				string short_line = "";
-				if(Text.CalcSize(line).x > MAX_LENGTH) {
+                if (line == "")
+                {
+                    // lazy fix for an error that occurs when the lower display contains empty lines.
+                    // usually that error is most likely valid, but here I believe it's best
+                    // to preserve those empty lines to allow for greater stylistic freedom.
+                    lines.Add(" ");
+					// another valid alternative would be to skip those empty lines in the small summary,
+					// but I feel it's better to show the "correct" representation of the text in question
+                    continue;
+                }
+                if (Text.CalcSize(line).x > MAX_LENGTH) {
 					foreach(string word in line.Split(' ')) {
 						if(Text.CalcSize(short_line + word).x < MAX_LENGTH) {
 							short_line += word + ' ';
@@ -245,26 +259,26 @@ namespace SaM {
 		protected override void FillTab() {
 			Text.Font = GameFont.Small;
 
-			Rect text = new Rect(20, 20, this.size.x - 40, this.size.y - 75);
-			Rect button = new Rect(20, this.size.y - 50, this.size.x - 40, 30);
-			Rect cancel = new Rect(button.x, button.y, (button.width - 10) / 2, button.height);
-			Rect save = new Rect((this.size.x + 10) / 2, button.y, (button.width - 10) / 2, button.height);
+			Rect rectText = new Rect(20, 20, this.size.x - 40, this.size.y - 75);
+			Rect rectButton = new Rect(20, this.size.y - 50, this.size.x - 40, 30);
+			Rect rectCancel = new Rect(rectButton.x, rectButton.y, (rectButton.width - 10) / 2, rectButton.height);
+			Rect rectSave = new Rect((this.size.x + 10) / 2, rectButton.y, (rectButton.width - 10) / 2, rectButton.height);
 
 			if(this.editing) {
-				this.text = Widgets.TextArea(text, this.text);
+				this.text = Widgets.TextArea(rectText, this.text);
 
-				if(Widgets.ButtonText(cancel, "SaM_TabView_Cancel".Translate())) {
+				if(Widgets.ButtonText(rectCancel, "SaM_TabView_Cancel".Translate())) {
 					this.editing = false;
 					this.text = ((Base)base.SelThing).text;
 				}
-				if(Widgets.ButtonText(save, "SaM_TabView_Save".Translate())) {
+				if(Widgets.ButtonText(rectSave, "SaM_TabView_Save".Translate())) {
 					this.editing = false;
 					((Base)base.SelThing).text = this.text;
 				}
 			} else {
-				Widgets.Label(text, this.text);
+				Widgets.Label(rectText, this.text);
 
-				if(Widgets.ButtonText(button, "SaM_TabView_Edit".Translate())) {
+				if(Widgets.ButtonText(rectButton, "SaM_TabView_Edit".Translate())) {
 					this.editing = true;
 				}
 			}

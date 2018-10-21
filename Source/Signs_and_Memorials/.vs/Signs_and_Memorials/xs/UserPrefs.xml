@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Defs/ThingDefs/Buildings_Structure.xml">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Signs_and_Memorials.cs">
     <Files>
       <File FileName="../../About/About.xml" Line="6" Column="27" />
-      <File FileName="Signs_and_Memorials.cs" Line="7" Column="1" />
-      <File FileName="../../Defs/ThingDefs/Buildings_Structure.xml" Line="18" Column="33" />
+      <File FileName="../../Defs/ThingDefs/Buildings_Structure.xml" Line="100" Column="14" />
+      <File FileName="Signs_and_Memorials.cs" Line="81" Column="80" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
