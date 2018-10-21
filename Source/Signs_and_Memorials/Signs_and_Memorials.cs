@@ -46,10 +46,10 @@ namespace SaM {
 	public class SaM_ModSettings : Verse.ModSettings {
 
 		/* TODO:
-		 * 
+		 *
 		 * Pause game on edit, would require some looking around, probably...
 		 */
-		
+
 		//
 		// Fields
 		//
@@ -69,7 +69,7 @@ namespace SaM {
 	}
 
 	public class Base : Building {
-		
+
 		//
 		// Static Fields
 		//
@@ -205,7 +205,7 @@ namespace SaM {
 	}
 
 	public class ITab_View : ITab {
-		
+
 		//
 		// Fields
 		//
@@ -221,7 +221,7 @@ namespace SaM {
 				return true;
 			}
 		}
-		
+
 		//
 		// Constructors
 		//
