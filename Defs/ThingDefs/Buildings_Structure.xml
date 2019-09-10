@@ -20,9 +20,6 @@
       <li>
         <compClass>CompQuality</compClass>
       </li>
-      <li class="SaM.CompProperties_Text">
-        <compClass>SaM.CompText</compClass>
-      </li>
     </comps>
     <thingCategories>
       <li>BuildingsMisc</li>

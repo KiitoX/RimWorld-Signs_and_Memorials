@@ -77,37 +77,23 @@ namespace SaM {
 		// in minified form this should be 5 but sadly we can't find that out easily
 		// so there will be a stupid scrollbar while in minified form.
 		// you can also not access the full text, but I believe that's not a bad thing
-        private static int MAX_LINES = 6;
-        private static int MAX_LENGTH = 408; // this is valid ONLY for GameFont.Small
-		private static GameFont TEXT_FONT = GameFont.Small;
+        private readonly static int MAX_LINES = 6;
+        private readonly static int MAX_LENGTH = 408; // this is valid ONLY for GameFont.Small
+		private readonly static GameFont TEXT_FONT = GameFont.Small;
 
 		//
 		// Fields
 		//
-		private SaM_ModSettings settings;
+		private readonly SaM_ModSettings settings;
 
-		private CompText textComp;
-
-		//
-		// Properties
-		//
-		public string text {
-			get {
-				return this.textComp.text;
-			}
-			set {
-				if(this.textComp.text == value) {
-					return;
-				}
-				this.textComp.text = value;
-			}
-		}
+		public string text;
 
 		//
 		// Constructors
 		//
 		public Base() {
 			this.settings = LoadedModManager.GetMod<SaM_Mod>().GetSettings<SaM_ModSettings>();
+			this.text = "SaM_Placeholder".Translate ();
 		}
 
 		//
@@ -115,11 +101,7 @@ namespace SaM {
 		//
 		public override void ExposeData() {
 			base.ExposeData();
-			if(Scribe.mode == LoadSaveMode.PostLoadInit) {
-				if(this.textComp == null) {
-					this.textComp = base.GetComp<CompText>();
-				}
-			}
+			Scribe_Values.Look (ref this.text, "text", "ERROR LOADING", false);
 		}
 
 		// THIS METHOD HANDLES THE STRING IN THE BOTTOM LEFT
@@ -184,7 +166,6 @@ namespace SaM {
 
 		public override void SpawnSetup(Map map, bool respawningAfterLoad) {
 			base.SpawnSetup(map, respawningAfterLoad);
-			this.textComp = base.GetComp<CompText>();
 			if(this.settings.editOnBuild) {
 				CameraJumper.TryJumpAndSelect(this);
 				Find.MainTabsRoot.SetCurrentTab(MainButtonDefOf.Inspect);
@@ -192,30 +173,6 @@ namespace SaM {
 			}
 		}
 
-	}
-
-	public class CompText : ThingComp {
-		//
-		// Fields
-		//
-		public string text = "SaM_Placeholder".Translate();
-
-		//
-		// Methods
-		//
-		public override void PostExposeData() {
-			base.PostExposeData();
-			Scribe_Values.Look<string>(ref this.text, "text", "ERROR LOADING", false);
-		}
-	}
-
-	public class CompProperties_Text : CompProperties {
-		//
-		// Constructors
-		//
-		public CompProperties_Text() {
-			this.compClass = typeof(CompText);
-		}
 	}
 
 	public class ITab_View : ITab {

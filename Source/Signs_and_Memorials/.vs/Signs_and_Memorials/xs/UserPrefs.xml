@@ -1,15 +1,30 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workbench ActiveDocument="Signs_and_Memorials.cs">
     <Files>
-      <File FileName="../../About/About.xml" Line="6" Column="27" />
-      <File FileName="../../Defs/ThingDefs/Buildings_Structure.xml" Line="100" Column="14" />
-      <File FileName="Signs_and_Memorials.cs" Line="81" Column="80" />
+      <File FileName="../../About/About.xml" Line="6" Column="22" />
+      <File FileName="../../Defs/ThingDefs/Buildings_Structure.xml" Line="22" Column="12" />
+      <File FileName="Signs_and_Memorials.cs" Line="95" Column="86" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Signs_and_Memorials" expanded="True">
+            <Node name="Signs_and_Memorials" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Defs" expanded="True">
+                <Node name="ThingDefs" expanded="True" />
+              </Node>
+              <Node name="Signs_and_Memorials.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
 </Properties>
