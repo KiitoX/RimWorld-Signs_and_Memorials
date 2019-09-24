@@ -166,6 +166,12 @@ namespace SaM {
 
 		public override void SpawnSetup(Map map, bool respawningAfterLoad) {
 			base.SpawnSetup(map, respawningAfterLoad);
+
+			// We really do not want to try to center on the block when we're just loading the map
+			// I really hope that is what that parameter means, cause if so this might've been causing
+			// a fairly rare race condidion on save loading... It really seems like I can't effing read
+			if (respawningAfterLoad) return;
+
 			if(this.settings.editOnBuild) {
 				CameraJumper.TryJumpAndSelect(this);
 				Find.MainTabsRoot.SetCurrentTab(MainButtonDefOf.Inspect);

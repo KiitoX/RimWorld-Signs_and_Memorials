@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Signs_and_Memorials.cs">
+  <MonoDevelop.Ide.Workbench>
     <Files>
       <File FileName="../../About/About.xml" Line="6" Column="22" />
       <File FileName="../../Defs/ThingDefs/Buildings_Structure.xml" Line="22" Column="12" />
-      <File FileName="Signs_and_Memorials.cs" Line="95" Column="86" />
+      <File FileName="Signs_and_Memorials.cs" Line="168" Column="17" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,6 +11,7 @@
           <Node name="Signs_and_Memorials" expanded="True">
             <Node name="Signs_and_Memorials" expanded="True">
               <Node name="References" expanded="True" />
+              <Node name="About" expanded="True" />
               <Node name="Defs" expanded="True">
                 <Node name="ThingDefs" expanded="True" />
               </Node>
