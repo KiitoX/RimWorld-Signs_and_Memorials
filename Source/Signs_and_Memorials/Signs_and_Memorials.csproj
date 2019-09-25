@@ -59,17 +59,11 @@
     <None Include="..\..\Languages\English\Keyed\ITabs.xml">
       <Link>Languages\English\Keyed\ITabs.xml</Link>
     </None>
-    <None Include="..\..\Languages\English\Keyed\Settings.xml">
-      <Link>Languages\English\Keyed\Settings.xml</Link>
-    </None>
     <None Include="..\..\Languages\German\DefInjected\ThingDef\Buildings_Misc.xml">
       <Link>Languages\German\DefInjected\ThingDef\Buildings_Misc.xml</Link>
     </None>
     <None Include="..\..\Languages\German\Keyed\ITabs.xml">
       <Link>Languages\German\Keyed\ITabs.xml</Link>
-    </None>
-    <None Include="..\..\Languages\German\Keyed\Settings.xml">
-      <Link>Languages\German\Keyed\Settings.xml</Link>
     </None>
     <None Include="..\..\Textures\Things\Building\SaM\Memorial.png">
       <Link>Textures\Things\Building\SaM\Memorial.png</Link>

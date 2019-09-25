@@ -17,55 +17,6 @@ namespace SaM {
 		//
 		// Methods
 		//
-		public override String SettingsCategory() {
-			return "SaM_Settings_category".Translate();
-		}
-
-		public override void DoSettingsWindowContents(Rect inRect) {
-			SaM_ModSettings settings = this.GetSettings<SaM_ModSettings>();
-			Text.Font = GameFont.Small;
-
-			float margin = 10;
-			float xPos = inRect.x + margin;
-			float yOff = inRect.y + margin;
-			float posW = inRect.width - 2 * margin;
-
-			Rect editCheckbox = new Rect(xPos, yOff, posW, 20);
-			yOff += editCheckbox.height;
-			Rect editDescription = new Rect(xPos, yOff, posW, 20);
-
-			Widgets.CheckboxLabeled(editCheckbox, "SaM_Settings_editOnBuild_label".Translate(), ref settings.editOnBuild, false);
-			Widgets.Label(editDescription, "SaM_Settings_editOnBuild_description".Translate());
-
-			// It seems to already work as is, but supposedly this has to be called to save the settings.
-			// Perhaps this only applies if the settings are changed from an 'external' context...
-			// LoadedModManager.GetMod<SaM_Mod>().WriteSettings();
-		}
-	}
-
-	public class SaM_ModSettings : Verse.ModSettings {
-
-		/* TODO:
-		 *
-		 * Pause game on edit, would require some looking around, probably...
-		 */
-
-		//
-		// Fields
-		//
-		public bool editOnBuild;
-
-		//
-		// Constructors
-		//
-		public SaM_ModSettings() {}
-
-		//
-		// Methods
-		//
-		public override void ExposeData() {
-			Scribe_Values.Look<bool>(ref this.editOnBuild, "edit_on_build", false, false);
-		}
 	}
 
 	public class Base : Building {
@@ -84,15 +35,12 @@ namespace SaM {
 		//
 		// Fields
 		//
-		private readonly SaM_ModSettings settings;
-
 		public string text;
 
 		//
 		// Constructors
 		//
 		public Base() {
-			this.settings = LoadedModManager.GetMod<SaM_Mod>().GetSettings<SaM_ModSettings>();
 			this.text = "SaM_Placeholder".Translate ();
 		}
 
@@ -163,22 +111,6 @@ namespace SaM {
 		public override TipSignal GetTooltip() {
 			return new TipSignal(this.text, this.thingIDNumber * 152317 /*251235*/, TooltipPriority.Default);
 		}
-
-		public override void SpawnSetup(Map map, bool respawningAfterLoad) {
-			base.SpawnSetup(map, respawningAfterLoad);
-
-			// We really do not want to try to center on the block when we're just loading the map
-			// I really hope that is what that parameter means, cause if so this might've been causing
-			// a fairly rare race condidion on save loading... It really seems like I can't effing read
-			if (respawningAfterLoad) return;
-
-			if(this.settings.editOnBuild) {
-				CameraJumper.TryJumpAndSelect(this);
-				Find.MainTabsRoot.SetCurrentTab(MainButtonDefOf.Inspect);
-				((MainTabWindow_Inspect)MainButtonDefOf.Inspect.TabWindow).OpenTabType = this.GetInspectTabs().OfType<ITab_View>().First().GetType();
-			}
-		}
-
 	}
 
 	public class ITab_View : ITab {
