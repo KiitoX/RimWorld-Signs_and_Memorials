@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+
+  <!-- ITab titles -->
+  <SaM_TabView>Voir</SaM_TabView>
+  <SaM_TabView_Edit>Éditer</SaM_TabView_Edit>
+  <SaM_TabView_Save>Sauver</SaM_TabView_Save>
+  <SaM_TabView_Cancel>Annuler</SaM_TabView_Cancel>
+  <SaM_Placeholder>Voici votre message!</SaM_Placeholder>
+
+</LanguageData>
