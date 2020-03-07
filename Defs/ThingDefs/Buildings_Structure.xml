@@ -1,9 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
   <ThingDef Name="SaM_Base" Abstract="True">
     <category>Building</category>
-    <thingClass>SaM.Base</thingClass>
+    <thingClass>SaM.Building_Memorial_Base</thingClass>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
     <selectable>true</selectable>
     <drawerType>MapMeshAndRealTime</drawerType>
