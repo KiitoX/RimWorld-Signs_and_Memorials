@@ -6,4 +6,7 @@
   <SaM_Settings_editOnBuild_label>Automatisch bearbeiten</SaM_Settings_editOnBuild_label>
   <SaM_Settings_editOnBuild_description>Öffnet den Bearbeiten-Tab automatísch sobald ein Schild/Denkmal gebaut wurde. Default (aus)</SaM_Settings_editOnBuild_description>
 
+  <SaM_Settings_pauseOnEdit_label>Spiel beim Bearbeiten anhalten</SaM_Settings_pauseOnEdit_label>
+  <SaM_Settings_pauseOnEdit_description>Schaltet das Spiel pausiert (falls nicht bereits), wenn ein Zeichen zu bearbeiten. Default (aus)</SaM_Settings_pauseOnEdit_description>
+
 </LanguageData>

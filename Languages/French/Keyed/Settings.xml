@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <SaM_Settings_category>Signes et commémoration</SaM_Settings_category>
+
+  <SaM_Settings_editOnBuild_label>Ouvrir automatiquement</SaM_Settings_editOnBuild_label>
+  <SaM_Settings_editOnBuild_description>Ouvre l'éditeur automatiquement quand quelqu'un a construit un signe ou un mémorial. Défaut (non)</SaM_Settings_editOnBuild_description>
+
+  <SaM_Settings_pauseOnEdit_label>Arrêter le jeu sur l'éditeur</SaM_Settings_pauseOnEdit_label>
+  <SaM_Settings_pauseOnEdit_description>Mettre le jeu en mode pause (sinon déjà) lorsque l'éditeur de signes est ouvert. Défaut (non)</SaM_Settings_pauseOnEdit_description>
+
+</LanguageData>
