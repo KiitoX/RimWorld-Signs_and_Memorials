@@ -6,4 +6,7 @@
   <SaM_Settings_editOnBuild_label>Auto-open edit</SaM_Settings_editOnBuild_label>
   <SaM_Settings_editOnBuild_description>Opens the edit tab when a sign/memorial has been built. Default (no)</SaM_Settings_editOnBuild_description>
 
+  <SaM_Settings_pauseOnEdit_label>Pause game on edit</SaM_Settings_pauseOnEdit_label>
+  <SaM_Settings_pauseOnEdit_description>Toggles the game paused (if not already) when editing a sign. Default (no)</SaM_Settings_pauseOnEdit_description>
+
 </LanguageData>
